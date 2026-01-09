@@ -165,15 +165,15 @@ Merge
 
 # Program of Radix sort
 
-def get_max(arr):
-    max_val = arr[0]
-    for i in range(1,len(arr)-1):
-        if arr[i] > max_val:
-            max_val = arr[i]
-        else:
-            pass
+# def get_max(arr):
+#     max_val = arr[0]
+#     for i in range(1,len(arr)-1):
+#         if arr[i] > max_val:
+#             max_val = arr[i]
+#         else:
+#             pass
 
-    return max_val
+#     return max_val
 
 # 50 = 50 // 10 = 
 # 5 % 10 = 5 
@@ -181,42 +181,165 @@ def get_max(arr):
 
 # 5418412 = 5418412 // 100000 = 54 % 10 = 4
 
-def count_sort(arr,exp):
+# def count_sort(arr,exp):
+#     n = len(arr)
+#     output = [0] * n
+#     count = [0] * 10
+    
+#     for i in range(0,n):
+#         digit = (arr[i] // exp) % 10
+#         count[digit] += 1
+
+#         # [2,0,1,0,0,2,0,0,0,0]
+
+# # count = [2,3,3,3,5,5,5,5,5]
+
+#     for j in range(1,10):
+#         count[j] = count[j] + count[j-1]
+#     # # arr = [170,45,75,90,802]
+#     k = n-1
+#     while k >= 0:
+#         digit = (arr[k] // exp)%10
+#         output[count[digit]-1] = arr[k]
+#         count[digit] = count[digit] - 1
+#         k = k-1
+
+#     for i in range(0,len(arr)):
+#         arr[i] = output[i]
+
+
+# def radix_sort(arr):
+#     max_num = get_max(arr)
+#     exp = 1
+#     while max_num // exp > 0:
+#         count_sort(arr,exp)
+#         exp = exp * 10
+    
+#     return arr
+
+
+# arr = [170,45,75,90,802]
+# print(f"this is your sorted Array : {radix_sort(arr)}")
+
+
+# Bucket Sort
+'''
+Range based sorting technique
+elements ko chhote grp(buckets) ke andr baat dete h 
+har bucket ke andr individually sort krte h
+last me sab buckets ko combine kr dete h
+
+'''
+
+# Use case
+'''
+1. Data uniformly distributed
+2. Floating numbers/small range ho
+3. faster avg performance
+
+'''
+# maano ki 0-100 ki range h
+
+# Aur hamne iss range ko 10 ke grps(bucket) me baat diya 0-9, 10-19, 20-29 ... 90-100
+
+# bucket count = size of array
+# bucket range  = ((max-min+1) // bucket_count) +1
+# bucket index = (value-min_value)//bucket_range
+
+# arr = [0.42,0.32,0.33,0.52,0.37,0.47,0.51]
+# n = 7
+
+# B0 B1 B2 B3 B4 B5 B6
+
+# index = 0.42 * 7 = 2.94 --> 2
+# 2,2,2,3,2,3,3
+
+# B2 -> [0.42,0.32,0.33,0.37]
+# B3 -> [0.52,0.47,0.51]
+
+# B2 -> [0.32.0.33,0.37,0.42]
+# B3 -> [0.47,0.51,0.52]
+
+
+# sorted_arr = B2 + B3
+# ->  [0.32.0.33,0.37,0.42,0.47,0.51,0.52]
+
+# insertion sort
+
+# hath me cards -> 7,3,5,2
+
+# Rules:
+# 1. Left part hmesha sorted rakhte
+# 2. Right side se ek element uthate hai
+# 3. usko correct position pr insert kr dete h
+
+# arr -> [8,3,5,2]
+#  [8 | 3,5,2]
+#  [3,8 | 5,2]
+#  [3,5,8 | 2]
+#  [2,3,5,8] --> Sorted 
+
+
+def insertion_sort(arr):
     n = len(arr)
-    output = [0] * n
-    count = [0] * 10
+
+    for i in range(1,n): # 1,2,3
+        key = arr[i] # key = 2
+        j = i-1 # j = 2
+        while j >= 0 and arr[j] > key: # yes and yes --> yes
+            arr[j+1] = arr[j] # arr[1] --> 3
+            j = j-1 # -1
+
+        arr[j+1] = key # arr[0] = 2 , arr = 2,3,5,8
+
+    return arr
+
+# Bucket sort ka code
+
+def bucket_sort(arr):
+    n = len(arr)
+    min_val = arr[0]
+    max_val = arr[0]
     
-    for i in range(0,n):
-        digit = (arr[i] // exp) % 10
-        count[digit] += 1
-
-        # [2,0,1,0,0,2,0,0,0,0]
-
-# count = [2,3,3,3,5,5,5,5,5]
-
-    for j in range(1,10):
-        count[j] = count[j] + count[j-1]
-    # # arr = [170,45,75,90,802]
-    k = n-1
-    while k >= 0:
-        digit = (arr[k] // exp)%10
-        output[count[digit]-1] = arr[k]
-        count[digit] = count[digit] - 1
-        k = k-1
-
-    for i in range(0,len(arr)):
-        arr[i] = output[i]
-
-
-def radix_sort(arr):
-    max_num = get_max(arr)
-    exp = 1
-    while max_num // exp > 0:
-        count_sort(arr,exp)
-        exp = exp * 10
+    for i in range(n):
+        if min_val>arr[i]:
+            min_val = arr[i]
+        if max_val<arr[i]:
+            max_val = arr[i]
     
+
+    print(f"max value {max_val}")
+    print(f"min value {min_val}")
+
+
+    bucket_count = n
+    buckets = [[] for _ in range(bucket_count)]
+    # Normalize index calculation for any range
+    for i in range(n):
+        # Avoid division by zero if all elements are the same
+        if max_val == min_val:
+            index = 0
+        else:
+            index = int(((arr[i] - min_val) / (max_val - min_val)) * (bucket_count - 1))
+        buckets[index].append(arr[i])
+
+    for k in range(bucket_count):
+        buckets[k] = insertion_sort(buckets[k])
+
+    idx = 0
+    for i in range(bucket_count):
+        for j in range(len(buckets[i])):
+            arr[idx] = buckets[i][j]
+            idx += 1
+
     return arr
 
 
-arr = [170,45,75,90,802]
-print(f"this is your sorted Array : {radix_sort(arr)}")
+arr = [0.42,0.32,0.33,0.52,0.37,0.47,0.51]
+
+print(f"sorted array is {bucket_sort(arr)}")
+
+
+
+
+# stable sorting : [3,1,1,5]

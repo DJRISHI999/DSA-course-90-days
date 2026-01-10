@@ -280,66 +280,220 @@ last me sab buckets ko combine kr dete h
 #  [2,3,5,8] --> Sorted 
 
 
-def insertion_sort(arr):
-    n = len(arr)
+# def insertion_sort(arr):
+#     n = len(arr)
 
-    for i in range(1,n): # 1,2,3
-        key = arr[i] # key = 2
-        j = i-1 # j = 2
-        while j >= 0 and arr[j] > key: # yes and yes --> yes
-            arr[j+1] = arr[j] # arr[1] --> 3
-            j = j-1 # -1
+#     for i in range(1,n): # 1,2,3
+#         key = arr[i] # key = 2
+#         j = i-1 # j = 2
+#         while j >= 0 and arr[j] > key: # yes and yes --> yes
+#             arr[j+1] = arr[j] # arr[1] --> 3
+#             j = j-1 # -1
 
-        arr[j+1] = key # arr[0] = 2 , arr = 2,3,5,8
+#         arr[j+1] = key # arr[0] = 2 , arr = 2,3,5,8
 
-    return arr
+#     return arr
 
-# Bucket sort ka code
+# # Bucket sort ka code
 
-def bucket_sort(arr):
-    n = len(arr)
-    min_val = arr[0]
-    max_val = arr[0]
+# def bucket_sort(arr):
+#     n = len(arr)
+#     min_val = arr[0]
+#     max_val = arr[0]
     
-    for i in range(n):
-        if min_val>arr[i]:
-            min_val = arr[i]
-        if max_val<arr[i]:
-            max_val = arr[i]
+#     for i in range(n):
+#         if min_val>arr[i]:
+#             min_val = arr[i]
+#         if max_val<arr[i]:
+#             max_val = arr[i]
     
 
-    print(f"max value {max_val}")
-    print(f"min value {min_val}")
+#     print(f"max value {max_val}")
+#     print(f"min value {min_val}")
 
 
-    bucket_count = n
-    buckets = [[] for _ in range(bucket_count)]
-    # Normalize index calculation for any range
-    for i in range(n):
-        # Avoid division by zero if all elements are the same
-        if max_val == min_val:
-            index = 0
-        else:
-            index = int(((arr[i] - min_val) / (max_val - min_val)) * (bucket_count - 1))
-        buckets[index].append(arr[i])
+#     bucket_count = n
+#     buckets = [[] for _ in range(bucket_count)]
+#     # Normalize index calculation for any range
+#     for i in range(n):
+#         # Avoid division by zero if all elements are the same
+#         if max_val == min_val:
+#             index = 0
+#         else:
+#             index = int(((arr[i] - min_val) / (max_val - min_val)) * (bucket_count - 1))
+#         buckets[index].append(arr[i])
 
-    for k in range(bucket_count):
-        buckets[k] = insertion_sort(buckets[k])
+#     for k in range(bucket_count):
+#         buckets[k] = insertion_sort(buckets[k])
 
-    idx = 0
-    for i in range(bucket_count):
-        for j in range(len(buckets[i])):
-            arr[idx] = buckets[i][j]
-            idx += 1
+#     idx = 0
+#     for i in range(bucket_count):
+#         for j in range(len(buckets[i])):
+#             arr[idx] = buckets[i][j]
+#             idx += 1
 
-    return arr
-
-
-arr = [0.42,0.32,0.33,0.52,0.37,0.47,0.51]
-
-print(f"sorted array is {bucket_sort(arr)}")
+#     return arr
 
 
+# arr = [0.42,0.32,0.33,0.52,0.37,0.47,0.51]
 
+# print(f"sorted array is {bucket_sort(arr)}")
 
 # stable sorting : [3,1,1,5]
+
+
+# Bubble Sort: [5,3,4,1]
+# 5 > 3 : Swap --> [3,5,4,1]
+# 5 > 4 : Swap --> [3,4,5,1]
+# 5 > 1 : Swap --> [3,4,1,5]
+
+# Through loop
+# def Bubble_Sort(arr): # arr = [5,3,4,1]
+#     n = len(arr) # 4
+
+#     for i in range(n): # 0,1,2,3
+#         swapped = False # False
+
+#         for j in range(0,n-i-1): # 0
+#             if arr[j] > arr[j+1]: # True
+#                 temp = arr[j] 
+#                 arr[j] = arr[j+1]
+#                 arr[j+1] = temp # [1, 3, 4, 5]
+#                 swapped = True # True
+
+#         if swapped == False:
+#             break
+
+#     return arr
+
+# arr = [5,3,4,1]
+# print(f"your sorted array is : {Bubble_Sort(arr)}")
+
+
+# Through recursion
+# def Bubble_Sort(arr,n):
+    
+#     if n == 1:
+#         return arr
+    
+#     i = 0
+#     while(i<n-1):
+#         if arr[i] > arr[i+1]:
+#             temp = arr[i]
+#             arr[i] = arr[i+1]
+#             arr[i+1] = temp
+
+#         i = i+1
+
+#     return Bubble_Sort(arr,n-1)
+
+# arr = [5,3,4,1]
+# print(f"your sorted array is : {Bubble_Sort(arr,len(arr))}")
+
+# Selection sort:
+
+# base idea: har pass me poore unsorted part se sabse chhota chuno aur shuru me rakh do
+
+# arr = [5,3,4,1]
+# pass 1 --> [1,5,3,4]
+# pass 2 --> [1,3,5,4]
+# pass 3 --> [1,3,4,5]
+
+# start with loop
+
+# def selection_sort(arr):
+#     n = len(arr)
+
+#     for i in range(n):
+#         min_index = i
+#         for j in range(i+1,n):
+#             if arr[j] < arr[min_index]:
+#                 min_index = j
+            
+
+#         if min_index != i:
+#             temp = arr[i]
+#             arr[i] = arr[min_index]
+#             arr[min_index] = temp
+
+#     return arr
+
+# arr = [5,3,4,1]
+# print(f"your sorted array is : {selection_sort(arr)}")
+
+
+# Recursion:
+
+# def selection_sort(arr,n,start):
+#     if start == n-1:
+#         return arr
+    
+#     min_index = start
+
+#     j = start+1
+#     while(j<n):
+#         if arr[j] < arr[min_index]:
+#             min_index = j
+#         j = j+1
+
+#     if min_index != start:
+#         temp = arr[start]
+#         arr[start] = arr[min_index]
+#         arr[min_index] = temp
+
+#     return selection_sort(arr,n,start+1) 
+
+# arr = [8,2,4,9]
+# print(f"your sorted arr is {selection_sort(arr,len(arr),0)}")  
+
+
+# Quick Sort:
+
+
+# arr = [10,80,30,90,40,50,70]
+
+
+def partition(arr,low,high):
+    mid = low + (high-low) // 2
+
+    pivot = arr[mid]
+
+    i = low
+    j = high
+
+    while i <= j:
+
+        while arr[i] < pivot:
+            i = i + 1
+
+        while arr[j] > pivot:
+            j = j - 1
+
+        if i <= j:
+            arr[i], arr[j] = arr[j], arr[i]
+            i = i+1
+            j = j-1
+
+
+    return i
+
+def quick_sort(arr,low,high):
+    if low < high:
+        index = partition(arr,low,high)
+
+        quick_sort(arr,low,index-1)
+
+        quick_sort(arr,index,high)
+
+    return arr
+
+
+arr = [10,80,30,90,40,50,70]
+result = quick_sort(arr,0,len(arr)-1)
+
+print(f"sorted arr is {result}")
+
+
+# time complexity : n(logn)
+        
+

@@ -453,47 +453,128 @@ last me sab buckets ko combine kr dete h
 # arr = [10,80,30,90,40,50,70]
 
 
-def partition(arr,low,high):
-    mid = low + (high-low) // 2
+# def partition(arr,low,high):
+#     mid = low + (high-low) // 2
 
-    pivot = arr[mid]
+#     pivot = arr[mid]
 
-    i = low
-    j = high
+#     i = low
+#     j = high
 
-    while i <= j:
+#     while i <= j:
 
-        while arr[i] < pivot:
-            i = i + 1
+#         while arr[i] < pivot:
+#             i = i + 1
 
-        while arr[j] > pivot:
-            j = j - 1
+#         while arr[j] > pivot:
+#             j = j - 1
 
-        if i <= j:
-            arr[i], arr[j] = arr[j], arr[i]
-            i = i+1
-            j = j-1
-
-
-    return i
-
-def quick_sort(arr,low,high):
-    if low < high:
-        index = partition(arr,low,high)
-
-        quick_sort(arr,low,index-1)
-
-        quick_sort(arr,index,high)
-
-    return arr
+#         if i <= j:
+#             arr[i], arr[j] = arr[j], arr[i]
+#             i = i+1
+#             j = j-1
 
 
-arr = [10,80,30,90,40,50,70]
-result = quick_sort(arr,0,len(arr)-1)
+#     return i
 
-print(f"sorted arr is {result}")
+# def quick_sort(arr,low,high):
+#     if low < high:
+#         index = partition(arr,low,high)
+
+#         quick_sort(arr,low,index-1)
+
+#         quick_sort(arr,index,high)
+
+#     return arr
+
+
+# arr = [10,80,30,90,40,50,70]
+# result = quick_sort(arr,0,len(arr)-1)
+
+# print(f"sorted arr is {result}")
 
 
 # time complexity : n(logn)
         
+# ::::Merge Sort::::
+
+# def merge_sort(arr,left,right):
+#     print(f"Left is {left} = {arr[left]} and Right is {right} = {arr[right]}")
+#     if left<right:
+#         mid = left + (right-left) // 2
+#         print(f"mid = {mid}")
+
+#         # left part
+#         merge_sort(arr,left,mid)
+        
+#         # right part
+#         merge_sort(arr,mid+1,right)
+
+#         # Merge both parts
+#         merge(arr,left,mid,right)
+
+
+# def merge(arr,left,mid,right):
+#     n1 = mid-left+1 # [9,5,1] 
+#     print(f"length of left sub-array = {n1}")
+#     n2 = right - mid # [8,6,4] 
+#     print(f"length of right sub-array = {n2}")
+
+#     L = [0] * n1
+#     print(f"initialized left sub-array: {L}")
+#     R = [0] * n2
+#     print(f"initialized right sub-array: {R}")
+
+#     for i in range(n1):
+#         print(f"indexing starts with left = {left}, i = {i}, index = arr[left+1] = arr[{left+i}] = {arr[left+i]}")
+#         L[i] = arr[left+i]
+#         print(f"at index {i} of Left subarray  = {L[i]}")
+
+#     for j in range(n2):
+#         print(f"indexing starts with right = {right}, j = {j}, index = arr[mid+1+j] = arr[{mid+1+j}] = {arr[mid+1+j]}")
+#         R[j] = arr[mid+1+j]
+#         print(f"at index {j} of Right subarray  = {R[j]}")
+
+#     i = 0
+#     j = 0
+#     k = left
+#     print(f"here k is {left}")
+
+#     while i<n1 and j<n2:
+#         print(f"now we start comparing and filling data in original arr")
+#         if L[i] <= R[j]:
+#             print(f"L[{i}] <= R[{j}] means {L[i]} <= {R[j]}")
+#             arr[k] = L[i]
+#             print(f"so at index {k} of arr we have L[{i}] means at arr[{k}] = {L[i]}")
+#             i = i+1
+
+#         else:
+#             print(f"L[{i}] > R[{j}] means {L[i]} > {R[j]}")
+#             arr[k] = R[j]
+#             print(f"so at index {k} of arr we have R[{j}] means at arr[{k}] = {R[j]}")
+#             j = j+1
+
+#         k = k+1
+
+
+#     while i < n1:
+#         print(f"so we have remaining part of Left Subarray as {i} < {n1}")
+#         arr[k] = L[i]
+#         print(f"so at index {k} of arr we have L[{i}] means at arr[{k}] = {L[i]}")
+#         i = i+1
+#         k = k+1
+
+#     while j<n2:
+#         arr[k] = R[j]
+#         print(f"so at index {k} of arr we have R[{j}] means at arr[{k}] = {R[j]}")
+#         k = k+1
+
+
+# arr = [9,5,1,8,6,4]
+
+# print(f"your unsorted array is {arr}")
+
+# merge_sort(arr,0,len(arr)-1)
+
+# print(f"your sorted array is {arr}")
 

@@ -19,55 +19,57 @@
 
 # 2. Stack underflow : agr ham ek empty stack me jabardasti ek aur element nikalana chahte h to wo hame ek error deta hai jiska naam hai "Stack Underflow".
 
-# class Stack:
-#     def __init__(self,size):
-#         self.stack = [0] * size
-#         self.top = -1
-#         self.size = size
+class Stack:
+    def __init__(self,size):
+        self.stack = [0] * size
+        self.top = -1
+        self.size = size
 
-#     def push(self,value):
-#         if self.top == self.size-1:
-#             print(f"Bhai Stack Overflow hai")
-#             return
-#         self.top = self.top+1
-#         self.stack[self.top] = value
+    def push(self,value):
+        if self.top == self.size-1:
+            print(f"Bhai Stack Overflow hai")
+            return
+        self.top = self.top+1
+        self.stack[self.top] = value
 
-#     def pop(self):
-#         if self.top == -1:
-#             print("Bhai stack underflow hai means khali hai already")
-#             return
+    def pop(self):
+        if self.top == -1:
+            print("Bhai stack underflow hai means khali hai already")
+            return
         
-#         value = self.stack[self.top]
-#         self.top = self.top-1
-#         return value
+        value = self.stack[self.top]
+        self.top = self.top-1
+        return value
     
-#     def peek(self):
-#         if self.top == -1:
-#             return None
+    def peek(self):
+        if self.top == -1:
+            return None
         
-#         return self.stack[self.top]
+        return self.stack[self.top]
     
-#     def isEmpty(self):
-#         return self.top == -1
+    def isEmpty(self):
+        return self.top == -1
     
 
 
-# stack = Stack(5)
+stack = Stack(5)
 
-# stack.push("Garm hai maamla")
-# stack.push("Yaha imaandari chalat hai babu")
-# stack.push("chala ja *** ")
-# stack.push("Kirish ka sunega gana")
-# stack.push("19:34")
-# stack.push("LOL") # Stack overflow
+stack.push("N")
+stack.push("e")
+stack.push("e")
+stack.push("l")
+stack.push("u")
+stack.push("LOL") # Stack overflow
 
 
-# print(stack.pop())
-# print(stack.pop())
+print(stack.pop())
+print(stack.pop())
+print(stack.pop())
+print(stack.pop())
+print(stack.pop())
+print(stack.peek())
 
-# print(stack.peek())
-
-# print(stack.isEmpty())
+print(stack.isEmpty())
 
 
 # Queue : Line A->B->C->D
@@ -93,56 +95,56 @@
 
 
 
-class Queue:
-    def __init__(self,size):
-        self.queue = [0] * size
-        self.front = 0
-        self.rear = -1
-        self.size = size
-        self.count = 0
+# class Queue:
+#     def __init__(self,size):
+#         self.queue = [0] * size
+#         self.front = 0
+#         self.rear = -1
+#         self.size = size
+#         self.count = 0
 
-    def enqueue(self,value):
-        if self.count == self.size:
-            print("Bhai jagah nhi hai baad me aana ")
-            return
+#     def enqueue(self,value):
+#         if self.count == self.size:
+#             print("Bhai jagah nhi hai baad me aana ")
+#             return
         
-        self.rear += 1
-        self.queue[self.rear] = value
-        self.count += 1
+#         self.rear += 1
+#         self.queue[self.rear] = value
+#         self.count += 1
 
 
-    def dequeue(self):
-        if self.count == 0:
-            print("Queue is underflow")
-            return
+#     def dequeue(self):
+#         if self.count == 0:
+#             print("Queue is underflow")
+#             return
         
-        value = self.queue[self.front]
-        self.front += 1
-        self.count -= 1
-        return value
+#         value = self.queue[self.front]
+#         self.front += 1
+#         self.count -= 1
+#         return value
     
 
-    def isEmpty(self):
-        return self.count == 0
+#     def isEmpty(self):
+#         return self.count == 0
     
 
-shadi_ki_line = Queue(5)
+# shadi_ki_line = Queue(5)
 
-shadi_ki_line.enqueue("Akash")
-shadi_ki_line.enqueue("sneha")
-shadi_ki_line.enqueue("Dhruv")
-shadi_ki_line.enqueue("Anjali")
-shadi_ki_line.enqueue("Nilu")
-shadi_ki_line.enqueue("Nilu ki roommate")
-
-
-print(shadi_ki_line.dequeue())
-print(shadi_ki_line.dequeue())
-print(shadi_ki_line.dequeue())
-print(shadi_ki_line.dequeue())
+# shadi_ki_line.enqueue("Akash")
+# shadi_ki_line.enqueue("sneha")
+# shadi_ki_line.enqueue("Dhruv")
+# shadi_ki_line.enqueue("Anjali")
+# shadi_ki_line.enqueue("Nilu")
+# shadi_ki_line.enqueue("Nilu ki roommate")
 
 
-print(shadi_ki_line.queue[shadi_ki_line.front])
+# print(shadi_ki_line.dequeue())
+# print(shadi_ki_line.dequeue())
+# print(shadi_ki_line.dequeue())
+# print(shadi_ki_line.dequeue())
+
+
+# print(shadi_ki_line.queue[shadi_ki_line.front])
 
 
 
